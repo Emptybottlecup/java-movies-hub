@@ -181,10 +181,8 @@ public class MoviesApiTest {
         String body2 = resp3.body().trim();
         ErrorResponse error = gson.fromJson(body2,ErrorResponse.class);
         assertEquals(404, resp3.statusCode());
-        assertEquals("Фильм не найден" , error.getErrorDetails()[0]);
+        assertEquals("Фильм не найден", error.getErrorDetails()[0]);
         assertEquals("Отсутствующий ID", error.getErrorName());
-
-
 
         deleteMovie("/2");
         HttpResponse<String> resp4 = getMovieOrMovies("");
