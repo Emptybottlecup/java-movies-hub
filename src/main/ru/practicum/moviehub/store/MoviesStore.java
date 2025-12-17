@@ -2,7 +2,8 @@ package ru.practicum.moviehub.store;
 
 import ru.practicum.moviehub.model.Movie;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MoviesStore {
@@ -10,7 +11,7 @@ public class MoviesStore {
     private int currentId = 0;
 
     public MoviesStore() {
-        movies = new HashMap<>();
+        movies = new LinkedHashMap<>();
     }
 
     public Movie addNewMovie(String title, int year) {
@@ -19,11 +20,26 @@ public class MoviesStore {
         return newMovie;
     }
 
+    public List<Movie> getAllMovies() {
+        return movies.values().stream().toList();
+    }
+
+    public List<Movie> getMoviesByYear(int year) {
+        return movies.values().stream().filter(movie -> movie.getYear() == year).toList();
+    }
+
+    public void deleteMovie(int id) {
+        movies.remove(id);
+    }
+
     public void clear() {
+        currentId = 0;
         movies.clear();
     }
 
-    public Movie getMovie (int id) {
-        return movies.get(id);
+    public boolean containsID(int id) {
+        return movies.containsKey(id);
     }
+
+    public Movie getMovie (int id) {return movies.get(id);}
 }

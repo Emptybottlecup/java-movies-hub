@@ -36,8 +36,8 @@ public class MoviesServer {
         System.out.println("Сервер запущен");
     }
 
-    public void stop(int secondsToStop) {
-        server.stop(secondsToStop);
+    public void stop() {
+        server.stop(2);
         System.out.println("Сервер остановлен");
     }
 }
