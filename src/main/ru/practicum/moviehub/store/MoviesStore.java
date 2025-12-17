@@ -15,8 +15,8 @@ public class MoviesStore {
     }
 
     public Movie addNewMovie(String title, int year) {
-        Movie newMovie = new Movie(title, year, currentId++);
-        movies.put(currentId, newMovie);
+        Movie newMovie = new Movie(title, year, currentId);
+        movies.put(currentId++, newMovie);
         return newMovie;
     }
 
@@ -41,5 +41,7 @@ public class MoviesStore {
         return movies.containsKey(id);
     }
 
-    public Movie getMovie (int id) {return movies.get(id);}
+    public Movie getMovie(int id) {
+        return movies.get(id);
+    }
 }

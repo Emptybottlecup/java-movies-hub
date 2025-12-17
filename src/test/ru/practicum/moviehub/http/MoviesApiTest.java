@@ -130,7 +130,7 @@ public class MoviesApiTest {
     @Test
     void addAndGetMovies() throws Exception {
         addMovie(MOVIE_1, HEADER, CT_JSON);
-        HttpResponse<String> resp1 = getMovieOrMovies("/1");
+        HttpResponse<String> resp1 = getMovieOrMovies("/0");
         String body1 = resp1.body().trim();
         Movie movie1 = gson.fromJson(body1, Movie.class);
 
@@ -143,7 +143,7 @@ public class MoviesApiTest {
 
 
         addMovie(MOVIE_2, HEADER, CT_JSON);
-        HttpResponse<String> resp2 = getMovieOrMovies("/2");
+        HttpResponse<String> resp2 = getMovieOrMovies("/1");
         String body2 = resp2.body().trim();
         Movie movie2 = gson.fromJson(body2, Movie.class);
 
@@ -168,7 +168,7 @@ public class MoviesApiTest {
         addMovie(MOVIE_1, HEADER, CT_JSON);
         addMovie(MOVIE_2, HEADER, CT_JSON);
 
-        HttpResponse<String> resp1 = deleteMovie("/1");
+        HttpResponse<String> resp1 = deleteMovie("/0");
         assertEquals(204, resp1.statusCode());
 
         HttpResponse<String> resp2 = getMovieOrMovies("");
@@ -184,7 +184,7 @@ public class MoviesApiTest {
         assertEquals("Фильм не найден", error.getErrorDetails()[0]);
         assertEquals("Отсутствующий ID", error.getErrorName());
 
-        deleteMovie("/2");
+        deleteMovie("/1");
         HttpResponse<String> resp4 = getMovieOrMovies("");
         String body3 = resp4.body().trim();
         List<Movie> movies2 = gson.fromJson(body3, new ListOfMoviesTypeToken().getType());
